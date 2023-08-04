@@ -8,7 +8,7 @@ public interface EventsService {
 
 	Optional<Event> getEventById(String id);
 	
-	void addEvent(Event e);
+	Event addEvent(Event e);
 	
 	void updateEvent(Event e, String eventId);
 

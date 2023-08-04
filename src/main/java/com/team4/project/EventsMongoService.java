@@ -32,8 +32,8 @@ public class EventsMongoService implements EventsService {
 	}
 	
 	@Override
-	public void addEvent(Event e) {
-		repo.save(e);
+	public Event addEvent(Event e) {
+		return repo.save(e);
 	}
 
 	@Override
