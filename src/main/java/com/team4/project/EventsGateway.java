@@ -6,6 +6,8 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -50,12 +52,13 @@ public class EventsGateway {
 	// POST a new event to the list
 	@PostMapping(consumes = JSON, produces = JSON)
 	public ResponseEntity<?> addEvent(@RequestBody Event e, HttpServletResponse response) {
-		eventsService.addEvent(e);
+		Event postedEvent = eventsService.addEvent(e);
 		
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(e.getId()).toUri();
-		ResponseEntity<?> responseEntity = ResponseEntity.created(location).build();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setLocation(location);
 		
-		return responseEntity;
+		return new ResponseEntity<>(postedEvent, headers, HttpStatus.OK);
 			
 	}
 	
