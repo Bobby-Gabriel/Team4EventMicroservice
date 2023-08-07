@@ -41,7 +41,7 @@ public class EventsGateway {
 	
 	// GET a customer by their place in the list
 	@GetMapping("/{id}")
-	public Optional<Event> getOneSingleEvent(@PathVariable String id, HttpServletResponse response) {
+	public Optional<Event> getOneSingleEvent(@PathVariable long id, HttpServletResponse response) {
 		
 		response.setStatus(HttpServletResponse.SC_OK);
 		return eventsService.getEventById(id);
@@ -64,13 +64,13 @@ public class EventsGateway {
 	
 	
 	@PutMapping("/{eventId}")
-	public ResponseEntity<?> putCustomer(@RequestBody Event newEvent, @PathVariable String eventId) {
-		if (!(newEvent.getId().equals(eventId))) {
+	public ResponseEntity<?> putCustomer(@RequestBody Event newEvent, @PathVariable long eventId) {
+		if (newEvent.getId() != eventId) {
 			return ResponseEntity.badRequest().build();
 		}
 		eventsService.updateEvent(newEvent, eventId);
 		
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newEvent.getId()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
 		ResponseEntity<?> responseEntity = ResponseEntity.created(location).build();
 		return responseEntity;
 	}
@@ -78,7 +78,7 @@ public class EventsGateway {
 
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteEvent(@PathVariable String id){
+	public ResponseEntity<?> deleteEvent(@PathVariable long id){
 	    
 		eventsService.deleteEventById(id);
 		return ResponseEntity.ok().build();
