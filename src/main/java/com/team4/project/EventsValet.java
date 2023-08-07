@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EventsMongoService implements EventsService {
+public class EventsValet implements EventsService {
 
 	@Autowired
-	EventsMongoRepository repo;
+	EventsRepository repo;
 	
 	@Override
 	public Iterable<Event> getEvents() {
@@ -17,7 +17,7 @@ public class EventsMongoService implements EventsService {
 	}
 
 	@Override
-	public Optional<Event> getEventById(String id) {
+	public Optional<Event> getEventById(long id) {
 		return repo.findById(id);
 	}
 
@@ -27,7 +27,7 @@ public class EventsMongoService implements EventsService {
 	}
 
 	@Override
-	public void deleteEventById(String id) {
+	public void deleteEventById(long id) {
 		repo.deleteById(id);
 	}
 	
@@ -37,7 +37,7 @@ public class EventsMongoService implements EventsService {
 	}
 
 	@Override
-	public void updateEvent(Event e, String id) {
+	public void updateEvent(Event e, long id) {
 		repo.save(e);
 	}
 

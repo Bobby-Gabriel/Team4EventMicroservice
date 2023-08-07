@@ -6,13 +6,13 @@ public interface EventsService {
 
 	Iterable<Event> getEvents();
 
-	Optional<Event> getEventById(String id);
+	Optional<Event> getEventById(long id);
 	
 	Event addEvent(Event e);
 	
-	void updateEvent(Event e, String eventId);
+	void updateEvent(Event e, long eventId);
 
 	void deleteEvent(Event event);
 
-	void deleteEventById(String id);
+	void deleteEventById(long id);
 }
