@@ -17,11 +17,11 @@ group = 'EventMicroservice'
 
 description = "Used for all events"
 
-mainClassName = "com.team4.events"
+mainClassName = "com.team4.project.App"
 
 
-sourceCompatibility = 11
-targetCompatibility = 11
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
 
