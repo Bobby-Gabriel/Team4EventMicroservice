@@ -24,13 +24,11 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RestController
 @CrossOrigin
 public class EventsGateway {
-
 	static final String JSON = "application/json";
 
 	@Autowired
 	EventsService eventsService;
 
-	
 	@GetMapping
 	public Iterable<Event> getAllEvents(HttpServletResponse response) {
 		
@@ -45,7 +43,6 @@ public class EventsGateway {
 		
 		response.setStatus(HttpServletResponse.SC_OK);
 		return eventsService.getEventById(id);
-			
 	}
 	
 	
@@ -59,7 +56,6 @@ public class EventsGateway {
 		headers.setLocation(location);
 		
 		return new ResponseEntity<>(postedEvent, headers, HttpStatus.OK);
-			
 	}
 	
 	
@@ -71,9 +67,8 @@ public class EventsGateway {
 		eventsService.updateEvent(newEvent, eventId);
 		
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
-		ResponseEntity<?> responseEntity = ResponseEntity.created(location).build();
-		
-		return responseEntity;
+
+		return ResponseEntity.created(location).build();
 	}
 	
 
