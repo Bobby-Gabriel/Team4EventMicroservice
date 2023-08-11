@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,7 @@ public class EventsGateway {
 	static final String JSON = "application/json";
 
 	@Autowired
+	@Qualifier("mockEventService")
 	EventsService eventsService;
 
 	@GetMapping
