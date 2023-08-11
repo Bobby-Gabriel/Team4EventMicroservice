@@ -69,8 +69,11 @@ public class MockEventService implements EventsService {
 			Event event = events.get(i);
 			if (event.getId() == id) {
 				events.set(i, e);
+				return;
 			}
 		}
+		
+		addEvent(e);
 		
 	}
 
